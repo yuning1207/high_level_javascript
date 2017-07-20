@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8" content="text/html">
+        <title>Ajax练习</title>
+    </head>
+    <body>
+        <h1>
+            查询员工信息
+        </h1>
+        <p>请输入员工编号：</p><input id="keyword"/>
+        <button id="search">查找</button>
+        <p id="searchResult"></p>
+        <h1>
+            输入员工信息
+        </h1>
+        <p>请输入员工姓名：</p><input id="staffName"/>
+        <p>请输入员工编号：</p><input id="staffNumber"/>
+        <p>请选择员工性别：</p>
+        <select id="staffSex">
+            <option>男</option><option>女</option>
+        </select>
+        <p>请输入员工职位：</p><input id="staffJob"/>
+        <button id="save">保存</button>
+        <p id="creatResult"></p>
+        <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").click(function(){
+                    $.ajax({
+                        type:"GET",
+                        url:"serve.php?number="+$("#keyword").val,
+                        dataType:"json",
+                        success:function(data){
+                            if(data.success)
+                            {
+                                $("#searchResult").html(data.msg);
+                            }
+                            else
+                            {
+                                $("#searchResult").html("出现错误"+data.msg);
+                            }
+                        },
+                        error:function(jqXHR){
+                            alert("发生错误："+jqXHR.status);
+                        }
+                    })
+                })
+            })
+            $(document).ready(function(){
+                $("#save").click(function(){
+                    $.ajax({
+                        type:"POST",
+                        url:"serve.php",
+                        dataType:"json",
+                        data:{
+                            name:$("#staffName").val(),
+                            number:$("#staffNumber").val(),
+                            sex:$("#staffSex").val(),
+                            job:$("#staffJob").val()
+                        },
+                        success:function(data){
+                            if(data.success)
+                            {
+                                $("#creatResult").html(data.msg);
+                            }
+                            else
+                            {
+                                $("#creatResult").html("出现错误"+data.msg);
+                            }
+                        },
+                        error:function(jqXHR){
+                            alert("发生错误："+jqXHR.status);
+                        }
+                    })
+                })
+            })
+        </script>
+    </body>
+</html>

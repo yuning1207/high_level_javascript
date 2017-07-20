@@ -1,0 +1,61 @@
+<!DOCTYPE THML>
+<html>
+    <head>
+        <title>
+            单体内置对象练习
+        </title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            //URI的应用
+            alert("URI的应用");
+            var uri="http://www.wrox.com/illegal value.htm#start";
+            var encode1=encodeURI(uri);
+            var encode2=encodeURIComponent(uri);
+            alert(encode1);
+            alert(encode2);
+            var decode1=decodeURI(encode1);
+            var decode2=decodeURIComponent(encode1);
+            var decode3=decodeURI(encode2);
+            var decode4=decodeURIComponent(encode2);
+            alert(decode1);
+            alert(decode2);
+            alert(decode3);
+            alert(decode4);
+            //eval的应用
+            alert("eval的应用");
+            eval("alert('hi')");
+            var name="name";
+            eval("alert(name)");
+            eval("function sayhi(){alert('is');}");
+            sayhi();
+            eval("var nam='yu'");
+            alert(nam);
+            //window对象
+            alert("window对象");
+            var color="red";
+            function saycolor()
+            {
+                alert(window.color);
+            }
+            window.saycolor();
+            //Math对象
+            alert("Math对象");
+            var max=Math.max(3,54,6,8);
+            alert("max="+max);
+            var min=Math.min(3,54,6,8);
+            alert("min="+min);
+            alert("Math.ceil(25.1)="+Math.ceil(25.1));
+            alert("Math.floor(25.9)="+Math.floor(25.9));
+            alert("Math.round(25.1)="+Math.round(25.1));
+            function selectfrom(lowerValue,upperValue)
+            {
+                var choice=upperValue-lowerValue+1;
+                return Math.floor(Math.random()*choice+lowerValue);
+            }
+            var emp=selectfrom(2,10);
+            alert("2-10:"+emp);
+        </script>
+    </body>
+</html>
