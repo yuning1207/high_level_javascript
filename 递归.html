@@ -10,13 +10,23 @@
 
 <body>
     <script type="text/javascript">
-        function factorial(n) {
+        /*
+                function factorial(n) {
+                    if (n <= 1)
+                        return 1;
+                    else
+                        return n * arguments.callee(n - 1);
+                }
+                alert(factorial(4));
+                */
+        var factorial = function fun(n) {
             if (n <= 1)
                 return 1;
             else
-                return n * arguments.callee(n - 1);
+                return n * fun(n - 1);
         }
-        alert(factorial(4));
+        alert(factorial(4)); //24
+        alert(fun(4));
     </script>
 </body>
 
