@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>canvas练习——填充和描边</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+</head>
+
+<body>
+    <canvas id="draw1" width="200" height="200">A drawing of something.</canvas>
+    <canvas id="draw2" width="200" height="200"></canvas>
+    <canvas id="draw3" width="200" height="200"></canvas>
+    <script>
+        var draw1 = document.getElementById("draw1");
+        if (draw1.getContext) {
+            var context = draw1.getContext("2d");
+            context.fillStyle = "red";
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = "rgba(0,0,255,0.5)";
+            context.fillRect(30, 30, 50, 50);
+        }
+        var draw2 = document.getElementById("draw2");
+        if (draw2.getContext) {
+            var context = draw2.getContext("2d");
+            context.strokeStyle = "red";
+            context.strokeRect(10, 10, 50, 50);
+            context.strokeStyle = "rgba(0,0,255,0.5)";
+            context.strokeRect(30, 30, 50, 50);
+        }
+        var draw3 = document.getElementById("draw3");
+        if (draw3.getContext) {
+            var context = draw3.getContext("2d");
+            context.fillStyle = "red";
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = "rgba(0,255,0,0.5)";
+            context.fillRect(30, 30, 50, 50);
+            context.clearRect(40, 40, 10, 10);
+        }
+    </script>
+</body>
+
+</html>
