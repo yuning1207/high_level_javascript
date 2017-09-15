@@ -11,6 +11,21 @@
 
 <body>
     <canvas id="draw1" width="200" height="200"></canvas>
+    <script>
+        var draw1 = document.getElementById("draw1");
+        if (draw1.getContext) {
+            var context = draw1.getContext("2d");
+            context.beginPath();
+            context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+            context.moveTo(194, 100);
+            context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+            context.moveTo(100, 100);
+            context.lineTo(100, 15);
+            context.moveTo(100, 100);
+            context.lineTo(35, 100);
+            context.stroke();
+        }
+    </script>
 
 </body>
 
