@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>canvas练习-图像</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scaleble=no">
+    <meta name="HandheldFriendly" content="true">
+</head>
+
+<body>
+    <img src="picture/1.png" alt="前端图片">
+    <canvas id="draw1" width="200" height="200"></canvas>
+    <canvas id="draw2" width="200" height="200"></canvas>
+    <canvas id="draw3" width="200" height="200"></canvas>
+    <canvas id="draw4" width="200" height="200"></canvas>
+    <script>
+        //图像
+        var draw1 = document.getElementById("draw1");
+        if (draw1.getContext) {
+            var context1 = draw1.getContext("2d");
+            var image = document.images[0];
+            image.onload = function() {
+                context1.drawImage(image, 10, 10);
+                context1.drawImage(image, 50, 10, 30, 20);
+                context1.drawImage(image, 0, 10, 100, 80, 0, 50, 40, 60)
+            }
+        }
+        //阴影
+        var draw2 = document.getElementById("draw2");
+        if (draw2.getContext) {
+            var context = draw2.getContext("2d");
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = 5;
+            context.shadowBlur = 4;
+            context.shadowColor = "rgba(0,0,0,0.5)";
+            context.fillStyle = "red";
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = "rgba(0,0,255,1)";
+            context.fillRect(30, 30, 50, 50);
+        }
+        //渐变
+        var draw3 = document.getElementById("draw3");
+        if (draw3.getContext) {
+            var context = draw3.getContext("2d");
+            var gradient = context.createLinearGradient(30, 30, 70, 70);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(1, "black");
+            context.fillStyle = "red";
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = gradient;
+            context.fillRect(30, 30, 50, 50);
+        }
+        var draw4 = document.getElementById("draw4");
+
+        function createRectLinearGradient(context, x, y, width, height) {
+            return context.createLinearGradient(x, y, x + width, y + height);
+        }
+        if (draw4.getContext) {
+            var context = draw4.getContext("2d");
+            var gradient = createRectLinearGradient(context, 30, 30, 50, 50);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(1, "black");
+            context.fillStyle = gradient;
+            context.fillRect(30, 30, 50, 50);
+        }
+    </script>
+</body>
+
+</html>
