@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>图像数据/合成</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scaleble=no">
+    <meta name="HandheldFriendly" content="true">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+</head>
+
+<body>
+    <img src="picture/1.png" alt="前端">
+    <canvas id="draw1" width="200" height="200"></canvas>
+    <script>
+        //使用图像数据，因为chrome无法解决跨域问题，本地又没有服务器，所以无法实现，但在IE可以
+        var draw1 = document.getElementById("draw1");
+        if (draw1.getContext) {
+            var context = draw1.getContext("2d");
+            var image = document.images[0];
+
+            var imageData, data, i, len, average, red, green, blue, alpha;
+            image.onload = function() {
+                context.drawImage(image, 10, 0);
+
+                imageData = context.getImageData(0, 0, image.width, image.height);
+
+                data = imageData.data;
+                for (i = 0, len = data.length; i < len; i += 4) {
+                    red = data[i];
+                    green = data[i + 1];
+                    blue = data[i + 2];
+                    alpha = data[i + 3];
+                    average = Math.floor((red + green + blue) / 3);
+                    data[i] = average;
+                    data[i + 1] = average;
+                    data[i + 2] = average;
+                }
+                imageData.data = data;
+                context.putImageData(imageData, 0, 0);
+            }
+        }
+    </script>
+</body>
+
+</html>

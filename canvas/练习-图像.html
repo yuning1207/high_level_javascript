@@ -15,6 +15,8 @@
     <canvas id="draw2" width="200" height="200"></canvas>
     <canvas id="draw3" width="200" height="200"></canvas>
     <canvas id="draw4" width="200" height="200"></canvas>
+    <canvas id="draw5" width="200" height="200"></canvas>
+    <canvas id="draw6" width="200" height="200"></canvas>
     <script>
         //图像
         var draw1 = document.getElementById("draw1");
@@ -24,7 +26,10 @@
             image.onload = function() {
                 context1.drawImage(image, 10, 10);
                 context1.drawImage(image, 50, 10, 30, 20);
-                context1.drawImage(image, 0, 10, 100, 80, 0, 50, 40, 60)
+                context1.drawImage(image, 0, 10, 100, 80, 0, 50, 40, 60);
+                var pattern = context6.createPattern(image1, "repeat");
+                context6.fillStyle = pattern;
+                context6.fillRect(10, 10, 190, 190);
             }
         }
         //阴影
@@ -64,6 +69,25 @@
             gradient.addColorStop(1, "black");
             context.fillStyle = gradient;
             context.fillRect(30, 30, 50, 50);
+        }
+        //放射渐变
+        var draw5 = document.getElementById("draw5");
+        if (draw5.getContext) {
+            var context = draw5.getContext("2d");
+            var gradient = context.createRadialGradient(55, 55, 10, 55, 55, 30);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(1, "black");
+            context.fillStyle = "red";
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = gradient;
+            context.fillRect(30, 30, 50, 50);
+        }
+        //模式
+        var draw6 = document.getElementById("draw6");
+
+        if (draw6.getContext) {
+            var context6 = draw6.getContext("2d");
+            var image1 = document.images[0];
         }
     </script>
 </body>
