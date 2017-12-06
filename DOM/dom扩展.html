@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>DOM扩展</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var result = document.documentElement.compareDocumentPosition(document.body);
+        //alert(result);
+        //alert(result & 16);
+        //alert(!(result & 16));
+        alert(!!(result & 16)); //双取非将它转化成了布尔值
+        var parentwindow = document.defaultView || document.parentwindow;
+        alert(parentwindow);
+    </script>
+</body>
+
+</html>

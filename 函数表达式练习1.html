@@ -12,8 +12,8 @@
     <script type="text/javascript">
         function compare(name) {
             return function(object1, object2) {
-                var value1 = object1[name];
-                var value2 = object2[name];
+                var value1 = object1[name]; //yu
+                var value2 = object2[name]; //ning
                 alert(value1);
                 if (value1 > value2)
                     return 1;
@@ -31,6 +31,8 @@
             age: 21
         }];
         data.sort(compare("name"));
+        //sort()方法会调用data每个数组项的tostring()转型方法，然后比较得到的字符串
+        //方法中的参数表示按照此方法进行排序
         alert(data[0].name);
     </script>
 </body>

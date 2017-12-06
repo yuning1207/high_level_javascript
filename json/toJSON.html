@@ -1,0 +1,40 @@
+<!DOCTYPE HTml>
+<html>
+
+<head>
+    <title>toJSON</title>
+</head>
+
+<body>
+    <script>
+        var book = {
+            title: "hello",
+            authors: ["jack", 29],
+            edition: 3,
+            year: 2011,
+            toJSON: function() {
+                return this.title;
+            }
+        };
+        var jsontext = JSON.stringify(book);
+        alert(jsontext); //"hello"
+        var book1 = {
+            title: "hello",
+            authors: ["jack", 29],
+            edition: 3,
+            year: 2011,
+            releaseDate: new Date(2011, 11, 1)
+        };
+        var jsontext = JSON.stringify(book1);
+        var bookcopy = JSON.parse(jsontext, function(key, value) {
+            if (key == "releaseDate") {
+                return new Date(value);
+            } else {
+                return value;
+            }
+        });
+        alert(bookcopy.releaseDate.getFullYear()); //2011
+    </script>
+</body>
+
+</html>
