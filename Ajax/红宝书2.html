@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>练习</title>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="Access-Control-Allow-Origin" content="*" /> -->
+
+</head>
+
+<body>
+    <script>
+        function createXHR() {
+            if (typeof XMLHttpRequest != "undefined ") {
+                //创建XHR对象
+                return new XMLHttpRequest();
+            } else if (typeof ActiveXObject != "undefined ") {
+                //适用于IE7之前的版本
+                if (typeof arguments.callee.activeXString != "string ") {
+                    var versions = ["MSXML2.XMLHttp.6.0 ", "MSXML2.XMLHttp.3.0 ", "MSXML2.XMLHttp "],
+                        i, len;
+                    for (i = 0, len = versions.length; i < len; i++) {
+                        try {
+                            new ActiveXObject(versions[i]);
+                            arguments.callee.activeXString = versions[i];
+                            break;
+                        } catch (ex) {
+                            //跳过
+                        }
+                    }
+                }
+                return new ActiveXObject(arguments.callee.activeXString);
+            } else {
+                throw new Error("no xhr object available ");
+            }
+        }
+        var xhr = createXHR();
+
+        var url = "example.txt";
+
+        //var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                    alert(xhr.responseText);
+                } else {
+                    alert("error: " + xhr.status);
+                }
+            }
+        }
+        xhr.open("get", url, true);
+        xhr.send(null);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOVTYPE html>
+<html>
+
+<head>
+    <title>异步操作</title>
+</head>
+
+<body>
+    <script>
+        function a() {
+            console.log("执行a函数")
+            setTimeout(function() {
+                console.log("执行a函数的延迟函数")
+            }, 0)
+        }
+
+        function b() {
+            console.log("执行b函数")
+        }
+        window.onload = function() {
+            a();
+            b();
+        }
+    </script>
+</body>
+
+</html>
